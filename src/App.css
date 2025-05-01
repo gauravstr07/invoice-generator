@@ -1,38 +1,187 @@
-.App {
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+h1, h2, h3 {
+  color: #2d8fd5;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  margin-top: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+h3 {
+  margin-top: 1rem;
+}
+
+/* Section Titles */
+h2 {
+  margin-top: 2rem;
+  color: #555;
+}
+
+/* Input Fields */
+input {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2d8fd5;
+}
+
+/* Item Row */
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.item-row input {
+  padding: 0.4rem;
+}
+
+.item-row button.remove-btn {
+  width: 50px;
+  height: 30px;
+  padding: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: red;
   color: white;
+  border: none;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  padding: 0.6rem 1.2rem;
+  background-color: #2d8fd5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button:hover {
+  background-color: #1a6bb0;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Remove Item Button */
+button.remove-btn {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 0.8rem;
+  margin-left: 0.5rem;
+}
+
+button.remove-btn:hover {
+  background-color: #b32d2d;
+}
+
+/* Total Section */
+.total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+h3, .total {
+  color: #333;
+}
+
+/* Invoice Info Section */
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Add Item Button */
+button.add-item {
+  background-color: #28a745;
+  margin-top: 1rem;
+}
+
+button.add-item:hover {
+  background-color: #218838;
+}
+
+/* Footer and Notes */
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #777;
+}
+
+/* Preventing Scroll: */
+.container {
+  overflow-y: auto;
+  max-height: 800px; /* Set a maximum height to prevent scrolling */
+  padding: 2rem 1rem; /* Adjust padding to fit everything */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .item-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .item-row input {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  button.remove-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
   }
 }
