@@ -65,34 +65,175 @@ function App() {
       <h1>Invoice Generator</h1>
 
       <h2>Business Info</h2>
-      <input name="businessName" placeholder="Your Company Name" onChange={(e) => handleChange(setBusiness, 'name', e.target.value)} />
-      <input name="businessAddress" placeholder="Your Address" onChange={(e) => handleChange(setBusiness, 'address', e.target.value)} />
-      <input name="businessEmail" placeholder="Your Email" onChange={(e) => handleChange(setBusiness, 'email', e.target.value)} />
-      <input name="businessPhone" placeholder="Your Phone" onChange={(e) => handleChange(setBusiness, 'phone', e.target.value)} />
 
-      <h2>Client Info</h2>
-      <input name="clientName" placeholder="Client Name" onChange={(e) => handleChange(setClient, 'name', e.target.value)} />
-      <input name="clientAddress" placeholder="Client Address" onChange={(e) => handleChange(setClient, 'address', e.target.value)} />
-      <input name="clientEmail" placeholder="Client Email" onChange={(e) => handleChange(setClient, 'email', e.target.value)} />
-      <input name="clientPhone" placeholder="Client Phone" onChange={(e) => handleChange(setClient, 'phone', e.target.value)} />
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Company Name</label>
+    <input
+      name="businessName"
+     
+      onChange={(e) => handleChange(setBusiness, 'name', e.target.value)}
+    />
+  </div>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Address</label>
+    <input
+      name="businessAddress"
+    
+      onChange={(e) => handleChange(setBusiness, 'address', e.target.value)}
+    />
+  </div>
+</div>
 
-      <h2>Invoice Info</h2>
-      <input name="invoiceNumber" placeholder="Invoice Number" onChange={(e) => handleChange(setInvoiceInfo, 'number', e.target.value)} />
-      <input name="invoiceDate" placeholder="Invoice Date" type="date" onChange={(e) => handleChange(setInvoiceInfo, 'date', e.target.value)} />
-      <input name="dueDate" placeholder="Due Date" type="date" onChange={(e) => handleChange(setInvoiceInfo, 'dueDate', e.target.value)} />
-      <input name="terms" placeholder="Payment Terms" onChange={(e) => handleChange(setInvoiceInfo, 'terms', e.target.value)} />
-      <input name="poNumber" placeholder="PO Number" onChange={(e) => handleChange(setInvoiceInfo, 'poNumber', e.target.value)} />
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Email</label>
+    <input
+      name="businessEmail"
+     
+      onChange={(e) => handleChange(setBusiness, 'email', e.target.value)}
+    />
+  </div>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Phone</label>
+    <input
+      name="businessPhone"
+    
+      onChange={(e) => handleChange(setBusiness, 'phone', e.target.value)}
+    />
+  </div>
+</div>
+
+
+<h2>Client Info</h2>
+
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Client Name</label>
+    <input name="clientName" onChange={(e) => handleChange(setClient, 'name', e.target.value)} />
+  </div>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Client Address</label>
+    <input name="clientAddress"  onChange={(e) => handleChange(setClient, 'address', e.target.value)} />
+  </div>
+</div>
+
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Client Email</label>
+    <input name="clientEmail"  onChange={(e) => handleChange(setClient, 'email', e.target.value)} />
+  </div>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Client Phone</label>
+    <input name="clientPhone"  onChange={(e) => handleChange(setClient, 'phone', e.target.value)} />
+  </div>
+</div>
+
+<h2>Invoice Info</h2>
+
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Invoice Number</label>
+    <input name="invoiceNumber"  onChange={(e) => handleChange(setInvoiceInfo, 'number', e.target.value)} />
+  </div>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Invoice Date</label>
+    <input type="date" name="invoiceDate" onChange={(e) => handleChange(setInvoiceInfo, 'date', e.target.value)} />
+  </div>
+</div>
+
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Due Date</label>
+    <input type="date" name="dueDate" onChange={(e) => handleChange(setInvoiceInfo, 'dueDate', e.target.value)} />
+  </div>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Payment Terms</label>
+    <input name="terms" placeholder="UPI/NET-PAY/CARD" onChange={(e) => handleChange(setInvoiceInfo, 'terms', e.target.value)} />
+  </div>
+</div>
+
+<div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+  <div style={{ flex: 1 }}>
+    <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>PO Number</label>
+    <input name="poNumber" placeholder="EX 12345..." onChange={(e) => handleChange(setInvoiceInfo, 'poNumber', e.target.value)} />
+  </div>
+</div>
+
 
       <h2>Invoice Items</h2>
       {items.map((item, i) => (
-        <div key={i} className="item-row">
-          <input name={`productName-${i}`} placeholder="Product Name" value={item.productName} onChange={(e) => handleItemChange(i, 'productName', e.target.value)} />
-          <input name={`qty-${i}`} placeholder="Quantity" type="number" value={item.qty} onChange={(e) => handleItemChange(i, 'qty', e.target.value)} />
-          <input name={`price-${i}`} placeholder="Price (₹)" type="number" value={item.price} onChange={(e) => handleItemChange(i, 'price', e.target.value)} />
-          <input name={`discount-${i}`} placeholder="Discount (%)" type="number" value={item.discount} onChange={(e) => handleItemChange(i, 'discount', e.target.value)} />
-          <button onClick={() => removeItem(i)}>Remove</button>
-        </div>
-      ))}
+  <div key={i} style={{ marginBottom: '2rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
+    <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+      <div style={{ flex: 1 }}>
+        <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Product Name</label>
+        <input
+          name={`productName-${i}`}
+         
+          value={item.productName}
+          onChange={(e) => handleItemChange(i, 'productName', e.target.value)}
+        />
+      </div>
+      <div style={{ flex: 1 }}>
+        <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Quantity</label>
+        <input
+          name={`qty-${i}`}
+          placeholder="Quantity"
+          type="text"
+          inputMode="numeric"
+          pattern="\d*"
+          value={item.qty}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) {
+              handleItemChange(i, 'qty', value);
+            }
+          }}
+        />
+      </div>
+    </div>
+
+    <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+      <div style={{ flex: 1 }}>
+        <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Price (₹)</label>
+        <input
+          name={`price-${i}`}
+          placeholder="Price (₹)"
+          type="text"
+          inputMode="numeric"
+          pattern="\d*"
+          value={item.price}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) {
+              handleItemChange(i, 'price', value);
+            }
+          }}
+        />
+      </div>
+      <div style={{ flex: 1 }}>
+        <label style={{ fontSize: '0.8rem', display: 'block', marginBottom: '0.3rem' }}>Discount (%)</label>
+        <input
+          name={`discount-${i}`}
+          placeholder="Discount (%)"
+          type="text"
+          inputMode="numeric"
+          pattern="\d*"
+          value={item.discount}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) {
+              handleItemChange(i, 'discount', value);
+            }
+          }}
+        />
+      </div>
+    </div>
+
+    <button onClick={() => removeItem(i)}>Remove</button>
+  </div>
+))}
+
       <button onClick={addItem}>Add Item</button>
 
       <h3>Subtotal: ₹{subtotal.toFixed(2)}</h3>
