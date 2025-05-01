@@ -33,32 +33,104 @@ function App() {
 
   const generatePDF = () => {
     const doc = new jsPDF();
-    doc.setFontSize(12);
-    doc.text(`Invoice #: ${invoiceInfo.number}`, 10, 10);
-    doc.text(`Date: ${invoiceInfo.date}`, 10, 20);
-    doc.text(`Due Date: ${invoiceInfo.dueDate}`, 10, 30);
-    doc.text(`PO Number: ${invoiceInfo.poNumber}`, 10, 40);
-    doc.text(`Payment Terms: ${invoiceInfo.terms}`, 10, 50);
 
-    doc.text(`From: ${business.name}`, 10, 60);
-    doc.text(`${business.address}`, 10, 70);
-    doc.text(`Email: ${business.email}`, 10, 80);
-    doc.text(`Phone: ${business.phone}`, 10, 90);
+    // Set font style and size
+    doc.setFontSize(16);
 
-    doc.text(`To: ${client.name}`, 110, 60);
-    doc.text(`${client.address}`, 110, 70);
-    doc.text(`Email: ${client.email}`, 110, 80);
-    doc.text(`Phone: ${client.phone}`, 110, 90);
+    // Add Simple Logo - Here we use a simple text-based logo
+    doc.setFont("helvetica", "bold");
+    doc.text("My Company Logo", 10, 10); // This is your logo (text-based)
 
+    // Title of the invoice
+    doc.setFont("helvetica", "normal");
+    doc.text(`Invoice #: ${invoiceInfo.number}`, 10, 20);
+
+    // Invoice Date and Due Date
+    doc.text(`Date: ${invoiceInfo.date}`, 10, 30);
+    doc.text(`Due Date: ${invoiceInfo.dueDate}`, 10, 40);
+
+    // Payment terms and PO number
+    doc.text(`PO Number: ${invoiceInfo.poNumber}`, 10, 50);
+    doc.text(`Payment Terms: ${invoiceInfo.terms}`, 10, 60);
+
+    // Business Info
+    doc.setFont("helvetica", "bold");
+    doc.text("From:", 10, 70);
+    doc.setFont("helvetica", "normal");
+    doc.text(`${business.name}`, 10, 80);
+    doc.text(`${business.address}`, 10, 90);
+    doc.text(`Email: ${business.email}`, 10, 100);
+    doc.text(`Phone: ${business.phone}`, 10, 110);
+
+    // Client Info
+    doc.setFont("helvetica", "bold");
+    doc.text("To:", 110, 70);
+    doc.setFont("helvetica", "normal");
+    doc.text(`${client.name}`, 110, 80);
+    doc.text(`${client.address}`, 110, 90);
+    doc.text(`Email: ${client.email}`, 110, 100);
+    doc.text(`Phone: ${client.phone}`, 110, 110);
+
+    // Add a line separator between the client and item section
+    doc.setLineWidth(0.5);
+    doc.line(10, 120, 200, 120);  // Horizontal line
+
+    // Table Header
+    doc.setFont("helvetica", "bold");
+    doc.text("Product", 10, 130);
+    doc.text("Quantity", 80, 130);
+    doc.text("Price (₹)", 110, 130);
+    doc.text("Discount (%)", 145, 130);
+    doc.text("Total (₹)", 180, 130);
+    doc.setFont("helvetica", "normal");
+
+    // Add table rows for items
+    let currentY = 140;
     items.forEach((item, index) => {
-      const y = 110 + index * 10;
-      doc.text(`${index + 1}. ${item.productName} - ${item.qty} × ₹${item.price} (-${item.discount}%)`, 10, y);
-    });
-    doc.text(`Subtotal: ₹${subtotal.toFixed(2)}`, 10, 120 + items.length * 10);
-    doc.text(`Discount: ₹${totalDiscount.toFixed(2)}`, 10, 130 + items.length * 10);
-    doc.text(`Total: ₹${total.toFixed(2)}`, 10, 140 + items.length * 10);
-    doc.save('invoice.pdf');
-  };
+      const itemTotal = (item.qty * item.price) - ((item.qty * item.price) * (item.discount / 100));
+  
+      // Add some space before each row of items
+      doc.text(item.productName, 10, currentY);
+      doc.text(`${item.qty}`, 80, currentY);
+      doc.text(`₹${item.price.toFixed(2)}`, 110, currentY);
+      doc.text(`${item.discount}%`, 145, currentY);
+      doc.text(`₹${itemTotal.toFixed(2)}`, 180, currentY);
+  
+      // Increase space between each item (you can adjust the value to control space)
+      currentY += 15;  // Increase space after each item (was 10 before)
+  }); 
+  
+
+    // Add a line separator after the items section
+    doc.line(10, currentY, 200, currentY);  // Horizontal line
+
+    // Adjust space for Subtotal, Discount, and Total to ensure it doesn't overflow
+    const padding = 10;
+    const totalY = currentY + 10;
+    
+    // Ensure that the content does not overflow the page width (190mm for A4 paper)
+    if (totalY > 260) { // If the content goes beyond the page height (approx 260mm for A4)
+        doc.addPage(); // Add a new page
+        currentY = 20; // Reset Y position for the new page
+    }
+
+    doc.setFont("helvetica", "bold");
+    doc.text(`Subtotal: ₹${subtotal.toFixed(2)}`, 10, currentY);
+    doc.text(`Discount: ₹${totalDiscount.toFixed(2)}`, 10, currentY + 10);
+    doc.text(`Total: ₹${total.toFixed(2)}`, 10, currentY + 20);
+
+    // Generate the filename using current date and first product name
+    const date = new Date();
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+    const productName = items[0].productName || "Product";
+    const fileName = `${formattedDate}-${productName.replace(/\s+/g, '_')}.pdf`;
+
+    // Final Save PDF with random filename
+    doc.save(fileName);
+};
+
+
+
 
   return (
     <div className="container">
